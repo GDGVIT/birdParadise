@@ -69,7 +69,7 @@ public class IdentifyBird extends AppCompatActivity {
 
     private static File getOutputMediaFile(){
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_PICTURES), "CameraDemo");
+                Environment.DIRECTORY_PICTURES), "Birding Simplified");
 
         if (!mediaStorageDir.exists()){
             if (!mediaStorageDir.mkdirs()){

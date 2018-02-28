@@ -1,6 +1,7 @@
 package com.example.dell.birdingsimplified;
 
 import android.Manifest;
+import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -16,22 +17,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dell.birdingsimplified.Adapters.NearbyBirdsRecyclerAdapter;
+import com.example.dell.birdingsimplified.Interfaces.LocationBird_API;
 import com.example.dell.birdingsimplified.Location.LocationAddress;
+import com.example.dell.birdingsimplified.Models.NearbyBirdsModel;
+import com.example.dell.birdingsimplified.Models.NearbyBirdsRecyclerModel;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
-public class NearbyBirds extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+import java.util.ArrayList;
+import java.util.List;
 
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle drawerToggle;
-    NavigationView navigation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class NearbyBirds extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
     public Location mLastLocation;
@@ -40,10 +53,17 @@ public class NearbyBirds extends AppCompatActivity implements GoogleApiClient.Co
     double latitude, longitude;
     String locationAddress = "";
 
+    List<NearbyBirdsRecyclerModel> recyclerList = new ArrayList<>();
+    NearbyBirdsRecyclerModel model;
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nearby_birds);
+
+        recyclerView = (RecyclerView)findViewById(R.id.nearbyBirdsRecycler);
 
         if (ContextCompat.checkSelfPermission(NearbyBirds.this,
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
@@ -54,6 +74,44 @@ public class NearbyBirds extends AppCompatActivity implements GoogleApiClient.Co
                     MY_PERMISSIONS_REQUEST_READ_LOCATION);
 
         }
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(LocationBird_API.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        LocationBird_API birdApi = retrofit.create(LocationBird_API.class);
+        Call<List<NearbyBirdsModel>> call = birdApi.getBirds();
+
+        call.enqueue(new Callback<List<NearbyBirdsModel>>() {
+            @Override
+            public void onResponse(Call<List<NearbyBirdsModel>> call, Response<List<NearbyBirdsModel>> response) {
+
+                List<NearbyBirdsModel> birdsList = response.body();
+//                Toast.makeText(getBaseContext(),birdsList.get(0).getName()+"",Toast.LENGTH_LONG).show();
+
+                for(int i=0;i<birdsList.size();i++){
+
+                    model = new NearbyBirdsRecyclerModel();
+                    model.setName(birdsList.get(i).getName());
+                    model.setColor(birdsList.get(i).getColor());
+                    model.setLocation(birdsList.get(i).getState());
+                    recyclerList.add(model);
+                }
+
+                NearbyBirdsRecyclerAdapter adapter = new NearbyBirdsRecyclerAdapter(recyclerList,NearbyBirds.this);
+                RecyclerView.LayoutManager manager = new GridLayoutManager(NearbyBirds.this,1);
+                recyclerView.setLayoutManager(manager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                recyclerView.setAdapter(adapter);
+                Toast.makeText(getBaseContext(),"Reached", Toast.LENGTH_LONG).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<NearbyBirdsModel>> call, Throwable t) {
+
+                Toast.makeText(getBaseContext(),"Please check your internet connection", Toast.LENGTH_LONG).show();
+
+            }
+        });
+
 
         final ProgressDialog pdLoading = new ProgressDialog(NearbyBirds.this);
         pdLoading.setMessage("Fetching your address..");
