@@ -95,13 +95,6 @@ public class NearbyBirds extends AppCompatActivity implements GoogleApiClient.Co
                     recyclerList.add(model);
                 }
 
-                NearbyBirdsRecyclerAdapter adapter = new NearbyBirdsRecyclerAdapter(recyclerList,NearbyBirds.this);
-                RecyclerView.LayoutManager manager = new GridLayoutManager(NearbyBirds.this,1);
-                recyclerView.setLayoutManager(manager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(adapter);
-                Toast.makeText(getBaseContext(),"Reached", Toast.LENGTH_LONG).show();
-
             }
 
             @Override
@@ -137,6 +130,17 @@ public class NearbyBirds extends AppCompatActivity implements GoogleApiClient.Co
 
                         pdLoading.dismiss();
                         Toast.makeText(getBaseContext(), locationAddress, Toast.LENGTH_LONG).show();
+                        List<NearbyBirdsRecyclerModel> recyclerList_filtered = new ArrayList<>();
+                        for(int i=0;i<recyclerList.size();i++){
+                            if(locationAddress.contains(recyclerList.get(i).getLocation()))
+                                recyclerList_filtered.add(recyclerList.get(i));
+                        }
+
+                        NearbyBirdsRecyclerAdapter adapter = new NearbyBirdsRecyclerAdapter(recyclerList_filtered,NearbyBirds.this);
+                        RecyclerView.LayoutManager manager = new GridLayoutManager(NearbyBirds.this,1);
+                        recyclerView.setLayoutManager(manager);
+                        recyclerView.setItemAnimator(new DefaultItemAnimator());
+                        recyclerView.setAdapter(adapter);
 
                     }
                 }, 3000);
