@@ -29,7 +29,7 @@ public class NearbyBirdsRecyclerAdapter extends RecyclerView.Adapter<NearbyBirds
     @Override
     public NearbyBirdsRecyclerAdapter.BirdHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.nearbybirds_recycler_layout, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.card_nearby_birds, parent, false);
         BirdHolder birdHolder = new BirdHolder(view);
         return birdHolder;
     }
