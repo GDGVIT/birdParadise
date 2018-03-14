@@ -1,0 +1,130 @@
+{
+  "project_info": {
+    "project_number": "918789249229",
+    "firebase_url": "https://letzchat-9bbc3.firebaseio.com",
+    "project_id": "letzchat-9bbc3",
+    "storage_bucket": "letzchat-9bbc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918789249229:android:e722273e4ff0d708",
+        "android_client_info": {
+          "package_name": "com.example.dell.letzchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918789249229-cvr9lcg6mcgbb2tqsmfse4cof8qj181l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dell.letzchat",
+            "certificate_hash": "efcb2614b914644a7e5786c04793ad604ef3e140"
+          }
+        },
+        {
+          "client_id": "918789249229-k1u2ro67kv1bhugcjkjuajlhqhbfa7el.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD25nk_kggOiM-snQXkZqe6PEis5gL-6wM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918789249229-k1u2ro67kv1bhugcjkjuajlhqhbfa7el.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918789249229:android:c1f0f09aa42eba16",
+        "android_client_info": {
+          "package_name": "com.google.firebase.example.fireeats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918789249229-k1u2ro67kv1bhugcjkjuajlhqhbfa7el.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD25nk_kggOiM-snQXkZqe6PEis5gL-6wM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918789249229:android:977470106b042aaf",
+        "android_client_info": {
+          "package_name": "com.example.dell.birdingsimplified"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918789249229-7m5svjvtrqd9h1u55f1oec228rfa9h2s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dell.birdingsimplified",
+            "certificate_hash": "efcb2614b914644a7e5786c04793ad604ef3e140"
+          }
+        },
+        {
+          "client_id": "918789249229-k1u2ro67kv1bhugcjkjuajlhqhbfa7el.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD25nk_kggOiM-snQXkZqe6PEis5gL-6wM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918789249229-k1u2ro67kv1bhugcjkjuajlhqhbfa7el.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
