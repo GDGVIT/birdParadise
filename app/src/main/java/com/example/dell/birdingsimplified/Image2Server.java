@@ -35,8 +35,8 @@ public class Image2Server extends AppCompatActivity implements View.OnClickListe
     private Bitmap bitmap;
 
     private Uri filePath;
-    public static final String UPLOAD_URL = "http://172.16.24.17/gdg/upload.php";
-    public static final String IMAGES_URL = "http://172.16.24.17/gdg/getImages.php";
+    public static final String UPLOAD_URL = "http://192.168.1.100/gdg/upload.php";
+    public static final String IMAGES_URL = "http://192.168.1.100/gdg/getImages.php";
 
 
     @Override
@@ -75,6 +75,8 @@ public class Image2Server extends AppCompatActivity implements View.OnClickListe
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(2)
                     .startUpload(); //Starting the upload
+
+            Toast.makeText(getBaseContext(), "Uploading..", Toast.LENGTH_LONG).show();
 
         } catch (Exception exc) {
             Toast.makeText(this, exc.getMessage(), Toast.LENGTH_SHORT).show();

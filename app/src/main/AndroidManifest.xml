@@ -27,7 +27,8 @@
         </activity>
         <activity android:name=".NearbyBirds" />
         <activity android:name=".IdentifyBird" />
-        <activity android:name=".Image2Server"></activity>
+        <activity android:name=".Image2Server" />
+        <activity android:name=".BirdHotspots"></activity>
     </application>
 
 </manifest>
